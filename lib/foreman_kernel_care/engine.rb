@@ -47,6 +47,7 @@ module ForemanKernelCare
       begin
         Host::Managed.send(:include, ForemanKernelCare::HostExtensions)
         HostsHelper.send(:include, ForemanKernelCare::HostsHelperExtensions)
+        Katello::Concerns::HostManagedExtensions.send(:prepend, ForemanKernelCare::HostManagedExtensions)
       rescue => e
         Rails.logger.warn "ForemanKernelCare: skipping engine hook (#{e})"
       end
